@@ -158,6 +158,14 @@ class MainController extends Controller
     }
 
     public function showResults(){
-        echo 'cabo';
+        $total_questions = session('total_questions');
+        $correct_answers = session('correct_answers');
+
+        return view('final_results')->with([
+            'correct_answers' => $correct_answers,
+            'wrong_answers' => session('wrong_answers'),
+            'total_questions' => $total_questions,
+            'percentage' => round($correct_answers / $total_questions * 100, 2)
+        ]);
     }
 }
